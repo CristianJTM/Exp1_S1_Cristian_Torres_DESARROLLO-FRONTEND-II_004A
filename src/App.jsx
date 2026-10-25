@@ -6,9 +6,13 @@ import QuienesSomos from './components/QuienesSomos.jsx'
 import Contacto from './components/Contacto.jsx'
 import NotFound from './components/NotFound.jsx'
 
+// En desarrollo BASE_URL es "/"; en GitHub Pages es "/<repositorio>/".
+// React Router necesita el basename sin la barra final.
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '')
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <ScrollToTop />
       <div className="app-shell">
         <main className="app-main">
