@@ -66,13 +66,34 @@ src/
 └─ main.jsx
 ```
 
+## Despliegue en GitHub Pages
+
+El sitio se publica en la rama `gh-pages` con el paquete `gh-pages`:
+
+```bash
+npm run deploy
+```
+
+El script `predeploy` ejecuta el build, `postbuild` genera `dist/404.html` (fallback para
+`BrowserRouter`) y `gh-pages` publica `dist/` con `.nojekyll` en la rama `gh-pages`.
+
+URL del sitio:
+
+```text
+https://cristianjtm.github.io/Exp1_S1_Cristian_Torres_DESARROLLO-FRONTEND-II_004A/
+```
+
+Para habilitarlo por primera vez en GitHub: **Settings → Pages → Source: Deploy from a branch →
+Branch: `gh-pages` / (root)**. Cada ejecución de `npm run deploy` reemplaza el contenido de la
+rama con el build más reciente.
+
 ## Notas
 
 - No hay backend ni llamadas a APIs: los datos son ficticios y el formulario no envía información
   a ningún servidor.
-- El proyecto usa `BrowserRouter`. Si se publica en un hosting estático sin fallback de SPA, las
-  subrutas directas pueden responder 404. En ese caso hay que configurar el fallback del proveedor
-  (por ejemplo, copiar `index.html` a `404.html` en GitHub Pages) o desplegar en Netlify/Vercel.
+- El proyecto usa `BrowserRouter`. Para GitHub Pages se configuró `base` en Vite, `basename` en
+  React Router y un fallback `404.html`, de modo que las subrutas funcionen al recargar. En otros
+  hostings estáticos puede ser necesario configurar su propio fallback de SPA.
 - El diseño es responsive y reserva espacio para la barra inferior con `padding-bottom` y
   `env(safe-area-inset-bottom)`.
 
