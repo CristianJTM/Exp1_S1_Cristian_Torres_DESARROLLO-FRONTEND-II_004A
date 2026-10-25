@@ -24,4 +24,5 @@ yarn-error.log*
 pnpm-debug.log*
 
 # Configuración local del asistente
+AGENTS.md
 opencode.json
