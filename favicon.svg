@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Súper Fresco">
+  <rect width="64" height="64" rx="14" fill="#136f43"/>
+  <path d="M23 26v-4a9 9 0 0 1 18 0v4" fill="none" stroke="#fbf8f1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M14 26h36l-3.4 22.4A5 5 0 0 1 41.7 53H22.3a5 5 0 0 1-4.9-4.6L14 26Z" fill="#fbf8f1"/>
+  <path d="M25 34v10M32 34v10M39 34v10" stroke="#136f43" stroke-width="3" stroke-linecap="round"/>
+</svg>
