@@ -6,6 +6,10 @@ La aplicación simula el sitio de un supermercado de barrio en Temuco e incluye 
 con React Router v6, un menú de navegación inferior persistente y un formulario de contacto con
 validación en el cliente.
 
+## Sitio publicado
+
+[Ver la aplicación en GitHub Pages](https://cristianjtm.github.io/Exp1_S1_Cristian_Torres_DESARROLLO-FRONTEND-II_004A/)
+
 ## Stack
 
 - React 18.3.1
