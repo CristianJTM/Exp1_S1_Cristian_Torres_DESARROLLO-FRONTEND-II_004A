@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PageHero from './ui/PageHero.jsx'
 import {
   ASUNTOS,
   CONTACTO_SECCION,
@@ -71,13 +72,7 @@ export default function Contacto() {
 
   return (
     <>
-      <section className="page-hero" aria-labelledby="contacto-title">
-        <div className="container">
-          <p className="eyebrow">{HERO_CONTACTO.eyebrow}</p>
-          <h1 id="contacto-title">{HERO_CONTACTO.title}</h1>
-          <p className="page-hero__lead">{HERO_CONTACTO.lead}</p>
-        </div>
-      </section>
+      <PageHero {...HERO_CONTACTO} titleId="contacto-title" />
 
       <section className="section section--contact">
         <div className="container contact-grid">

@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom'
 import ProductCard from './ProductCard.jsx'
+import CtaBand from './ui/CtaBand.jsx'
+import SectionHead from './ui/SectionHead.jsx'
+import StatList from './ui/StatList.jsx'
 import { BENEFICIOS, CIFRAS, CTA_HOME, HERO_HOME, SECCIONES_HOME } from '../data/home.js'
 import { CATEGORIAS, PRODUCTOS } from '../data/productos.js'
 
@@ -44,24 +47,13 @@ export default function Home() {
         </div>
 
         <div className="container">
-          <dl className="stats">
-            {CIFRAS.map(({ valor, etiqueta }) => (
-              <div className="stat" key={etiqueta}>
-                <dt>{etiqueta}</dt>
-                <dd>{valor}</dd>
-              </div>
-            ))}
-          </dl>
+          <StatList items={CIFRAS} />
         </div>
       </section>
 
       <section className="section" aria-labelledby="categorias-title">
         <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">{categorias.eyebrow}</p>
-            <h2 id="categorias-title">{categorias.title}</h2>
-            <p className="section-lead">{categorias.lead}</p>
-          </div>
+          <SectionHead {...categorias} titleId="categorias-title" />
 
           <div className="category-grid">
             {CATEGORIAS.map((categoria) => (
@@ -78,14 +70,7 @@ export default function Home() {
 
       <section className="section section--muted" aria-labelledby="destacados-title">
         <div className="container">
-          <div className="section-head section-head--row">
-            <div>
-              <p className="eyebrow">{seccionDestacados.eyebrow}</p>
-              <h2 id="destacados-title">{seccionDestacados.title}</h2>
-              <p className="section-lead">{seccionDestacados.lead}</p>
-            </div>
-            <p className="section-note">{seccionDestacados.note}</p>
-          </div>
+          <SectionHead {...seccionDestacados} titleId="destacados-title" row />
 
           <div className="product-grid">
             {destacados.map((producto) => (
@@ -97,10 +82,7 @@ export default function Home() {
 
       <section className="section" aria-labelledby="beneficios-title">
         <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">{seccionBeneficios.eyebrow}</p>
-            <h2 id="beneficios-title">{seccionBeneficios.title}</h2>
-          </div>
+          <SectionHead {...seccionBeneficios} titleId="beneficios-title" />
 
           <div className="benefits-grid">
             {BENEFICIOS.map((beneficio) => (
@@ -118,20 +100,7 @@ export default function Home() {
 
       <section className="section section--tight">
         <div className="container">
-          <div className="cta-band">
-            <div>
-              <h2>{CTA_HOME.title}</h2>
-              <p>{CTA_HOME.text}</p>
-            </div>
-            <div className="cta-band__actions">
-              <Link className="btn btn--light" to={CTA_HOME.primary.to}>
-                {CTA_HOME.primary.label}
-              </Link>
-              <Link className="btn btn--outline-light" to={CTA_HOME.secondary.to}>
-                {CTA_HOME.secondary.label}
-              </Link>
-            </div>
-          </div>
+          <CtaBand {...CTA_HOME} />
         </div>
       </section>
     </>

@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+import CtaBand from './ui/CtaBand.jsx'
+import PageHero from './ui/PageHero.jsx'
+import SectionHead from './ui/SectionHead.jsx'
 import { EQUIPO } from '../data/equipo.js'
 import {
   CTA_QUIENES,
@@ -12,13 +14,7 @@ import {
 export default function QuienesSomos() {
   return (
     <>
-      <section className="page-hero" aria-labelledby="quienes-title">
-        <div className="container">
-          <p className="eyebrow">{HERO_QUIENES.eyebrow}</p>
-          <h1 id="quienes-title">{HERO_QUIENES.title}</h1>
-          <p className="page-hero__lead">{HERO_QUIENES.lead}</p>
-        </div>
-      </section>
+      <PageHero {...HERO_QUIENES} titleId="quienes-title" />
 
       <section className="section" aria-labelledby="historia-title">
         <div className="container story">
@@ -44,10 +40,11 @@ export default function QuienesSomos() {
 
       <section className="section section--muted" aria-labelledby="proposito-title">
         <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">{PROPOSITO.eyebrow}</p>
-            <h2 id="proposito-title">{PROPOSITO.title}</h2>
-          </div>
+          <SectionHead
+            eyebrow={PROPOSITO.eyebrow}
+            title={PROPOSITO.title}
+            titleId="proposito-title"
+          />
 
           <div className="mv-grid">
             <article className="mv-card">
@@ -83,11 +80,7 @@ export default function QuienesSomos() {
 
       <section className="section" aria-labelledby="equipo-title">
         <div className="container">
-          <div className="section-head">
-            <p className="eyebrow">{EQUIPO_SECCION.eyebrow}</p>
-            <h2 id="equipo-title">{EQUIPO_SECCION.title}</h2>
-            <p className="section-lead">{EQUIPO_SECCION.lead}</p>
-          </div>
+          <SectionHead {...EQUIPO_SECCION} titleId="equipo-title" />
 
           <div className="team-grid">
             {EQUIPO.map((integrante) => (
@@ -110,20 +103,7 @@ export default function QuienesSomos() {
 
       <section className="section section--tight">
         <div className="container">
-          <div className="cta-band">
-            <div>
-              <h2>{CTA_QUIENES.title}</h2>
-              <p>{CTA_QUIENES.text}</p>
-            </div>
-            <div className="cta-band__actions">
-              <Link className="btn btn--light" to={CTA_QUIENES.primary.to}>
-                {CTA_QUIENES.primary.label}
-              </Link>
-              <Link className="btn btn--outline-light" to={CTA_QUIENES.secondary.to}>
-                {CTA_QUIENES.secondary.label}
-              </Link>
-            </div>
-          </div>
+          <CtaBand {...CTA_QUIENES} />
         </div>
       </section>
     </>
