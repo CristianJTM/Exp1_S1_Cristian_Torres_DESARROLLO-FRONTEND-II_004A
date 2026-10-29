@@ -38,7 +38,7 @@
     width: 100%;
   }
 
-  .ctaBandActions .btn {
+  .ctaBandActions :global(.btn) {
     flex: 1;
   }
 }

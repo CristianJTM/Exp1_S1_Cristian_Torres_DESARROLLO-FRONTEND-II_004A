@@ -62,7 +62,7 @@ export default function FormField({
       )}
 
       {error && (
-        <p className={styles.formError} id={errorId}>
+        <p className={styles.formError} id={errorId} role="alert">
           {error}
         </p>
       )}

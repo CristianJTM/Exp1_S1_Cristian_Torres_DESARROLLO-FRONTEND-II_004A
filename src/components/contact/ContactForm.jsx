@@ -20,8 +20,9 @@ export default function ContactForm() {
         <div className={styles.formSuccess} role="status">
           <span aria-hidden="true">✅</span>
           <p>
-            ¡Gracias, {nombreEnviado}! Recibimos tu mensaje y te responderemos dentro de las
-            próximas 24 horas hábiles.
+            {CONTACTO_SECCION.formSuccessBefore}
+            {nombreEnviado}
+            {CONTACTO_SECCION.formSuccessAfter}
           </p>
         </div>
       )}

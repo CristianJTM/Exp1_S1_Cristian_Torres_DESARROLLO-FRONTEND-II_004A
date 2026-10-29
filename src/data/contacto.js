@@ -17,6 +17,9 @@ export const CONTACTO_SECCION = {
   formIntroAfter: ' son obligatorios.',
   formNote:
     'Este formulario es parte de un proyecto académico y no envía datos a ningún servidor.',
+  formSuccessBefore: '¡Gracias, ',
+  formSuccessAfter:
+    '! Recibimos tu mensaje y te responderemos dentro de las próximas 24 horas hábiles.',
 }
 
 export const INFO_CONTACTO = [
