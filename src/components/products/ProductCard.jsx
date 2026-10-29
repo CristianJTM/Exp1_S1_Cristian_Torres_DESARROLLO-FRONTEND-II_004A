@@ -1,8 +1,4 @@
-const formatoCLP = new Intl.NumberFormat('es-CL', {
-  style: 'currency',
-  currency: 'CLP',
-  maximumFractionDigits: 0,
-})
+import { formatearCLP } from '../../utils/formatoMoneda.js'
 
 export default function ProductCard({ producto }) {
   const { nombre, categoria, precio, unidad, emoji, oferta, descripcion } = producto
@@ -19,7 +15,7 @@ export default function ProductCard({ producto }) {
         <h3>{nombre}</h3>
         <p className="product-card__description">{descripcion}</p>
         <p className="product-card__price">
-          {formatoCLP.format(precio)}
+          {formatearCLP(precio)}
           <span className="product-card__unit"> / {unidad}</span>
         </p>
       </div>
