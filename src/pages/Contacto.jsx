@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import PageHero from './ui/PageHero.jsx'
+import ContactInfo from '../components/contact/ContactInfo.jsx'
+import PageHero from '../components/ui/PageHero.jsx'
 import {
   ASUNTOS,
   CONTACTO_SECCION,
@@ -76,26 +77,7 @@ export default function Contacto() {
 
       <section className="section section--contact">
         <div className="container contact-grid">
-          <aside className="contact-info" aria-labelledby="info-title">
-            <h2 id="info-title">{CONTACTO_SECCION.infoTitle}</h2>
-            <p className="contact-info__lead">{CONTACTO_SECCION.infoLead}</p>
-
-            <ul className="contact-list">
-              {INFO_CONTACTO.map((item) => (
-                <li className="contact-item" key={item.titulo}>
-                  <span className="contact-item__icon" aria-hidden="true">
-                    {item.icono}
-                  </span>
-                  <div>
-                    <h3>{item.titulo}</h3>
-                    <p>{item.detalle}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            <p className="contact-info__note">{CONTACTO_SECCION.infoNote}</p>
-          </aside>
+          <ContactInfo content={CONTACTO_SECCION} items={INFO_CONTACTO} />
 
           <div className="form-card">
             <h2>{CONTACTO_SECCION.formTitle}</h2>
