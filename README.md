@@ -15,7 +15,7 @@ validación en el cliente.
 - React 18.3.1
 - React Router DOM 6.30.6
 - Vite 5
-- CSS plano (sin frameworks)
+- CSS Modules sobre CSS plano (sin frameworks)
 
 ## Requisitos
 
@@ -54,21 +54,88 @@ fuera de `<Routes>`, por lo que permanece visible en todas las vistas.
 
 ```text
 src/
-├─ components/
-│  ├─ Navbar.jsx
+├─ pages/
 │  ├─ Home.jsx
 │  ├─ QuienesSomos.jsx
 │  ├─ Contacto.jsx
-│  ├─ ProductCard.jsx
-│  ├─ ScrollToTop.jsx
 │  └─ NotFound.jsx
+│
+├─ components/
+│  ├─ layout/
+│  │  ├─ AppLayout.jsx
+│  │  ├─ Navbar.jsx
+│  │  ├─ Footer.jsx
+│  │  └─ ScrollToTop.jsx
+│  ├─ ui/
+│  │  ├─ PageHero.jsx
+│  │  ├─ SectionHead.jsx
+│  │  ├─ CtaBand.jsx
+│  │  └─ StatList.jsx
+│  ├─ home/
+│  │  ├─ Hero.jsx
+│  │  ├─ CategoryGrid.jsx
+│  │  ├─ FeaturedProducts.jsx
+│  │  └─ BenefitsGrid.jsx
+│  ├─ about/
+│  │  ├─ StorySection.jsx
+│  │  ├─ Timeline.jsx
+│  │  ├─ TimelineItem.jsx
+│  │  ├─ PurposeGrid.jsx
+│  │  ├─ MvCard.jsx
+│  │  ├─ TeamGrid.jsx
+│  │  └─ TeamCard.jsx
+│  ├─ contact/
+│  │  ├─ ContactInfo.jsx
+│  │  ├─ ContactForm.jsx
+│  │  └─ FormField.jsx
+│  └─ products/
+│     └─ ProductCard.jsx
+│
 ├─ data/
+│  ├─ navegacion.js
+│  ├─ sitio.js
+│  ├─ home.js
+│  ├─ quienesSomos.js
+│  ├─ contacto.js
 │  ├─ productos.js
 │  └─ equipo.js
+│
+├─ hooks/
+│  └─ useContactForm.js
+│
+├─ utils/
+│  ├─ validacion.js
+│  └─ formatoMoneda.js
+│
+├─ styles/
+│  ├─ tokens.css
+│  ├─ base.css
+│  ├─ layout.css
+│  └─ utilities.css
+│
 ├─ App.jsx
-├─ App.css
 └─ main.jsx
 ```
+
+Cada componente o página que necesita estilos propios tiene su archivo `*.module.css` junto al
+`.jsx`.
+
+## Arquitectura
+
+| Capa | Responsabilidad |
+| --- | --- |
+| `pages/` | Componer las vistas a partir de secciones y componentes |
+| `components/layout/` | Shell persistente: navbar, footer, scroll y `<Outlet />` |
+| `components/ui/` | Componentes compartidos: `PageHero`, `SectionHead`, `CtaBand`, `StatList` |
+| `components/home`, `about`, `contact`, `products` | Secciones y piezas de dominio |
+| `data/` | Contenido estático, textos compartidos y datos del negocio |
+| `hooks/` | Estado y eventos del formulario |
+| `utils/` | Validación y formato de moneda, sin JSX |
+| `styles/` | Tokens, reset, layout y utilidades globales |
+| `*.module.css` | Estilos encapsulados por componente o página |
+
+La dirección, teléfono, correo, horario, navegación y textos de CTA se centralizan en `data/` para
+evitar duplicaciones. Las páginas no contienen datos del negocio hardcodeados.
 
 ## Despliegue en GitHub Pages
 
@@ -100,6 +167,8 @@ rama con el build más reciente.
   hostings estáticos puede ser necesario configurar su propio fallback de SPA.
 - El diseño es responsive y reserva espacio para la barra inferior con `padding-bottom` y
   `env(safe-area-inset-bottom)`.
+- Los estilos usan CSS Modules sobre CSS plano: los tokens, el reset, el layout y las utilidades
+  compartidas permanecen globales; el resto se encapsula por componente.
 
 ## Autor
 
