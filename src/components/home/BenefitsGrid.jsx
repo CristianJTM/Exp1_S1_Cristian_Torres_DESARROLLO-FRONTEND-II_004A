@@ -1,4 +1,5 @@
 import SectionHead from '../ui/SectionHead.jsx'
+import styles from './BenefitsGrid.module.css'
 
 export default function BenefitsGrid({ content, beneficios, titleId = 'beneficios-title' }) {
   return (
@@ -6,10 +7,10 @@ export default function BenefitsGrid({ content, beneficios, titleId = 'beneficio
       <div className="container">
         <SectionHead {...content} titleId={titleId} />
 
-        <div className="benefits-grid">
+        <div className={styles.benefitsGrid}>
           {beneficios.map((beneficio) => (
-            <article className="benefit" key={beneficio.titulo}>
-              <span className="benefit__icon" aria-hidden="true">
+            <article className={styles.benefit} key={beneficio.titulo}>
+              <span className={styles.benefitIcon} aria-hidden="true">
                 {beneficio.icono}
               </span>
               <h3>{beneficio.titulo}</h3>

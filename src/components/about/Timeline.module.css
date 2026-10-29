@@ -1,0 +1,45 @@
+.timeline {
+  display: grid;
+  gap: 1.5rem;
+  padding-left: 1.75rem;
+  border-left: 2px dashed rgb(19 111 67 / 0.35);
+}
+
+.timelineItem {
+  position: relative;
+}
+
+.timelineItem::before {
+  content: "";
+  position: absolute;
+  top: 0.35rem;
+  left: calc(-1.75rem - 6px);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgb(19 111 67 / 0.2);
+}
+
+.timelineYear {
+  display: inline-block;
+  margin-bottom: 0.35rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.timeline h3 {
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.timeline p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}

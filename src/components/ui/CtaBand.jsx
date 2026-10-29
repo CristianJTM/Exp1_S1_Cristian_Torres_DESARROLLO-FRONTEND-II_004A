@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom'
+import styles from './CtaBand.module.css'
 
 export default function CtaBand({ title, text, primary, secondary }) {
   return (
-    <div className="cta-band">
+    <div className={styles.ctaBand}>
       <div>
         <h2>{title}</h2>
         <p>{text}</p>
       </div>
-      <div className="cta-band__actions">
+      <div className={styles.ctaBandActions}>
         <Link className="btn btn--light" to={primary.to}>
           {primary.label}
         </Link>

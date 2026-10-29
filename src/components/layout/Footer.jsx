@@ -1,10 +1,11 @@
 import { FOOTER } from '../../data/sitio.js'
+import styles from './Footer.module.css'
 
 export default function Footer() {
   return (
-    <footer className="app-footer">
-      <div className="container app-footer__inner">
-        <p className="app-footer__brand">
+    <footer className={styles.appFooter}>
+      <div className={`container ${styles.appFooterInner}`}>
+        <p className={styles.appFooterBrand}>
           <span aria-hidden="true">🛒</span> {FOOTER.marca}
         </p>
         <p>

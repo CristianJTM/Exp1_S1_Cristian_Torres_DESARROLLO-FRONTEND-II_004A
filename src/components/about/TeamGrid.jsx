@@ -1,5 +1,6 @@
 import SectionHead from '../ui/SectionHead.jsx'
 import TeamCard from './TeamCard.jsx'
+import styles from './TeamGrid.module.css'
 
 export default function TeamGrid({ content, equipo, titleId = 'equipo-title' }) {
   return (
@@ -7,7 +8,7 @@ export default function TeamGrid({ content, equipo, titleId = 'equipo-title' }) 
       <div className="container">
         <SectionHead {...content} titleId={titleId} />
 
-        <div className="team-grid">
+        <div className={styles.teamGrid}>
           {equipo.map((integrante) => (
             <TeamCard key={integrante.id} integrante={integrante} />
           ))}

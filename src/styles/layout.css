@@ -1,0 +1,51 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - var(--nav-h) - 2rem - env(safe-area-inset-bottom));
+}
+
+.app-main {
+  flex: 1;
+}
+
+.container {
+  width: min(1120px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: 4.5rem;
+}
+
+.section--muted {
+  background-color: var(--color-bg-muted);
+  border-block: 1px solid var(--color-border);
+}
+
+.section--tight {
+  padding-block: 1rem 4.5rem;
+}
+
+.section--contact {
+  padding-block: 3.5rem 4.5rem;
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding-block: 3.25rem;
+  }
+
+  .section--tight {
+    padding-block: 0.5rem 3.25rem;
+  }
+
+  .section--contact {
+    padding-block: 2.5rem 3.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: min(1120px, 100% - 1.5rem);
+  }
+}

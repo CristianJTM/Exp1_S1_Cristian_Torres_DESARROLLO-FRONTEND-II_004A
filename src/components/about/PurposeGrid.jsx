@@ -1,5 +1,6 @@
 import SectionHead from '../ui/SectionHead.jsx'
 import MvCard from './MvCard.jsx'
+import styles from './PurposeGrid.module.css'
 
 export default function PurposeGrid({ proposito, titleId = 'proposito-title' }) {
   return (
@@ -11,7 +12,7 @@ export default function PurposeGrid({ proposito, titleId = 'proposito-title' }) 
           titleId={titleId}
         />
 
-        <div className="mv-grid">
+        <div className={styles.mvGrid}>
           <MvCard icon={proposito.mision.icono} title={proposito.mision.titulo}>
             <p>{proposito.mision.texto}</p>
           </MvCard>
@@ -21,7 +22,7 @@ export default function PurposeGrid({ proposito, titleId = 'proposito-title' }) 
           </MvCard>
 
           <MvCard icon={proposito.valores.icono} title={proposito.valores.titulo}>
-            <ul className="check-list">
+            <ul className={styles.checkList}>
               {proposito.valores.items.map((valor) => (
                 <li key={valor}>{valor}</li>
               ))}

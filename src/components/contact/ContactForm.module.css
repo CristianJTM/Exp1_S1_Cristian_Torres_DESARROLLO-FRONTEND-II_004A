@@ -1,0 +1,57 @@
+.formCard {
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  border: 1px solid var(--color-border);
+  border-radius: 26px;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.formCard h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+}
+
+.formCardIntro {
+  margin-bottom: 1.5rem;
+  font-size: 0.93rem;
+  color: var(--color-muted);
+}
+
+.formSuccess {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #b7e1c8;
+  border-radius: 14px;
+  background-color: #e8f5ee;
+  color: var(--color-primary-dark);
+  font-size: 0.9rem;
+}
+
+.formSuccess p {
+  margin: 0;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.contactForm :global(.btn) {
+  margin-top: 0.25rem;
+}
+
+.formNote {
+  margin: 0.9rem 0 0;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}

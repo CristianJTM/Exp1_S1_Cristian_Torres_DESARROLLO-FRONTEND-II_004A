@@ -1,0 +1,45 @@
+.sectionHead {
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.sectionHead h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 0.6rem;
+}
+
+.sectionHeadRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  max-width: none;
+}
+
+.sectionLead {
+  max-width: 62ch;
+  margin-bottom: 0;
+  color: var(--color-muted);
+}
+
+.sectionNote {
+  margin: 0;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .sectionHeadRow {
+    align-items: flex-start;
+  }
+
+  .sectionNote {
+    white-space: normal;
+  }
+}

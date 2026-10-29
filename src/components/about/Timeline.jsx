@@ -1,8 +1,9 @@
 import TimelineItem from './TimelineItem.jsx'
+import styles from './Timeline.module.css'
 
 export default function Timeline({ items }) {
   return (
-    <ol className="timeline">
+    <ol className={styles.timeline}>
       {items.map((item) => (
         <TimelineItem
           key={item.año}

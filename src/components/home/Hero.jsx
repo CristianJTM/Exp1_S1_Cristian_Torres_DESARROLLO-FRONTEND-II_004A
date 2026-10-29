@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom'
 import StatList from '../ui/StatList.jsx'
+import styles from './Hero.module.css'
 
 export default function Hero({ content, stats }) {
   const { eyebrow, title, titleHighlight, lead, checks, primaryCta, secondaryCta, visual } =
     content
 
   return (
-    <section className="hero" aria-labelledby="hero-title">
-      <div className="container hero__inner">
-        <div className="hero__content">
+    <section className={styles.hero} aria-labelledby="hero-title">
+      <div className={`container ${styles.heroInner}`}>
+        <div className={styles.heroContent}>
           <p className="eyebrow">{eyebrow}</p>
           <h1 id="hero-title">
             {title} <span>{titleHighlight}</span>
           </h1>
-          <p className="hero__lead">{lead}</p>
+          <p className={styles.heroLead}>{lead}</p>
 
-          <div className="hero__actions">
+          <div className={styles.heroActions}>
             <Link className="btn btn--primary" to={primaryCta.to}>
               {primaryCta.label}
             </Link>
@@ -24,17 +25,17 @@ export default function Hero({ content, stats }) {
             </Link>
           </div>
 
-          <ul className="hero__checks">
+          <ul className={styles.heroChecks}>
             {checks.map((check) => (
               <li key={check}>{check}</li>
             ))}
           </ul>
         </div>
 
-        <div className="hero__visual" aria-hidden="true">
-          <span className="hero__emoji">{visual.emoji}</span>
-          <span className="hero__tag hero__tag--top">{visual.tagTop}</span>
-          <span className="hero__tag hero__tag--bottom">{visual.tagBottom}</span>
+        <div className={styles.heroVisual} aria-hidden="true">
+          <span className={styles.heroEmoji}>{visual.emoji}</span>
+          <span className={`${styles.heroTag} ${styles.heroTagTop}`}>{visual.tagTop}</span>
+          <span className={`${styles.heroTag} ${styles.heroTagBottom}`}>{visual.tagBottom}</span>
         </div>
       </div>
 

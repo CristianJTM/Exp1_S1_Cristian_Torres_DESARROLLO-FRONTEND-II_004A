@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
+import styles from './NotFound.module.css'
 
 export default function NotFound() {
   return (
-    <section className="not-found">
+    <section className={styles.notFound}>
       <div className="container">
-        <p className="not-found__code">404</p>
+        <p className={styles.notFoundCode}>404</p>
         <h1>Esta página se fue de compras</h1>
-        <p className="not-found__lead">
+        <p className={styles.notFoundLead}>
           No encontramos la dirección que buscas. Puede que el enlace haya cambiado o que la página
           ya no exista.
         </p>

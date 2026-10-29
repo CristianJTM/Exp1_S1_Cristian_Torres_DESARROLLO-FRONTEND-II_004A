@@ -1,0 +1,33 @@
+.appFooter {
+  margin-top: auto;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg-muted);
+}
+
+.appFooterInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.appFooter p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.appFooterBrand {
+  color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+@media (max-width: 720px) {
+  .appFooterInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

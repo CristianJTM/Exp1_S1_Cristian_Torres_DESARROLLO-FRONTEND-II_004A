@@ -1,13 +1,15 @@
+import styles from './ContactInfo.module.css'
+
 export default function ContactInfo({ content, items }) {
   return (
-    <aside className="contact-info" aria-labelledby="info-title">
+    <aside className={styles.contactInfo} aria-labelledby="info-title">
       <h2 id="info-title">{content.infoTitle}</h2>
-      <p className="contact-info__lead">{content.infoLead}</p>
+      <p className={styles.contactInfoLead}>{content.infoLead}</p>
 
-      <ul className="contact-list">
+      <ul className={styles.contactList}>
         {items.map((item) => (
-          <li className="contact-item" key={item.titulo}>
-            <span className="contact-item__icon" aria-hidden="true">
+          <li className={styles.contactItem} key={item.titulo}>
+            <span className={styles.contactItemIcon} aria-hidden="true">
               {item.icono}
             </span>
             <div>
@@ -18,7 +20,7 @@ export default function ContactInfo({ content, items }) {
         ))}
       </ul>
 
-      <p className="contact-info__note">{content.infoNote}</p>
+      <p className={styles.contactInfoNote}>{content.infoNote}</p>
     </aside>
   )
 }

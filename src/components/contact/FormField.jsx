@@ -1,3 +1,5 @@
+import styles from './FormField.module.css'
+
 export default function FormField({
   as = 'input',
   id,
@@ -25,7 +27,7 @@ export default function FormField({
   }
 
   return (
-    <div className="form-field">
+    <div className={styles.formField}>
       <label htmlFor={id}>
         {label}
         {required && (
@@ -60,7 +62,7 @@ export default function FormField({
       )}
 
       {error && (
-        <p className="form-error" id={errorId}>
+        <p className={styles.formError} id={errorId}>
           {error}
         </p>
       )}

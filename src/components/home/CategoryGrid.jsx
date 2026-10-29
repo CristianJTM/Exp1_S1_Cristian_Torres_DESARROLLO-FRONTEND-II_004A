@@ -1,4 +1,5 @@
 import SectionHead from '../ui/SectionHead.jsx'
+import styles from './CategoryGrid.module.css'
 
 export default function CategoryGrid({ content, categorias, titleId = 'categorias-title' }) {
   return (
@@ -6,10 +7,10 @@ export default function CategoryGrid({ content, categorias, titleId = 'categoria
       <div className="container">
         <SectionHead {...content} titleId={titleId} />
 
-        <div className="category-grid">
+        <div className={styles.categoryGrid}>
           {categorias.map((categoria) => (
-            <article className="category-card" key={categoria.id}>
-              <span className="category-card__emoji" aria-hidden="true">
+            <article className={styles.categoryCard} key={categoria.id}>
+              <span className={styles.categoryCardEmoji} aria-hidden="true">
                 {categoria.emoji}
               </span>
               <h3>{categoria.nombre}</h3>

@@ -1,8 +1,10 @@
+import styles from './StatList.module.css'
+
 export default function StatList({ items }) {
   return (
-    <dl className="stats">
+    <dl className={styles.stats}>
       {items.map(({ valor, etiqueta }) => (
-        <div className="stat" key={etiqueta}>
+        <div className={styles.stat} key={etiqueta}>
           <dt>{etiqueta}</dt>
           <dd>{valor}</dd>
         </div>

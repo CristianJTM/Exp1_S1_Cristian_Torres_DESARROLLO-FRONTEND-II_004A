@@ -1,10 +1,11 @@
 import Timeline from './Timeline.jsx'
+import styles from './StorySection.module.css'
 
 export default function StorySection({ historia, hitos, titleId = 'historia-title' }) {
   return (
     <section className="section" aria-labelledby={titleId}>
-      <div className="container story">
-        <div className="prose">
+      <div className={`container ${styles.story}`}>
+        <div className={styles.prose}>
           <p className="eyebrow">{historia.eyebrow}</p>
           <h2 id={titleId}>{historia.title}</h2>
           {historia.paragraphs.map((parrafo) => (

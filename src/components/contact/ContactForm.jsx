@@ -1,22 +1,23 @@
 import useContactForm from '../../hooks/useContactForm.js'
 import { ASUNTOS, CONTACTO_SECCION, FORM_INICIAL } from '../../data/contacto.js'
 import FormField from './FormField.jsx'
+import styles from './ContactForm.module.css'
 
 export default function ContactForm() {
   const { form, errores, enviado, nombreEnviado, handleChange, handleSubmit } =
     useContactForm(FORM_INICIAL)
 
   return (
-    <div className="form-card">
+    <div className={styles.formCard}>
       <h2>{CONTACTO_SECCION.formTitle}</h2>
-      <p className="form-card__intro">
+      <p className={styles.formCardIntro}>
         {CONTACTO_SECCION.formIntroBefore}
         <span className="required">*</span>
         {CONTACTO_SECCION.formIntroAfter}
       </p>
 
       {enviado && (
-        <div className="form-success" role="status">
+        <div className={styles.formSuccess} role="status">
           <span aria-hidden="true">✅</span>
           <p>
             ¡Gracias, {nombreEnviado}! Recibimos tu mensaje y te responderemos dentro de las
@@ -25,8 +26,8 @@ export default function ContactForm() {
         </div>
       )}
 
-      <form className="contact-form" onSubmit={handleSubmit} noValidate>
-        <div className="form-row">
+      <form className={styles.contactForm} onSubmit={handleSubmit} noValidate>
+        <div className={styles.formRow}>
           <FormField
             id="nombre"
             name="nombre"
@@ -52,7 +53,7 @@ export default function ContactForm() {
           />
         </div>
 
-        <div className="form-row">
+        <div className={styles.formRow}>
           <FormField
             id="telefono"
             name="telefono"
@@ -93,7 +94,7 @@ export default function ContactForm() {
           Enviar mensaje
         </button>
 
-        <p className="form-note">{CONTACTO_SECCION.formNote}</p>
+        <p className={styles.formNote}>{CONTACTO_SECCION.formNote}</p>
       </form>
     </div>
   )
