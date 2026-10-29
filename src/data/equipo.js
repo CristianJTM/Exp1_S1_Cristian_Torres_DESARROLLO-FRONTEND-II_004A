@@ -1,4 +1,4 @@
-export const equipo = [
+export const EQUIPO = [
   {
     id: 'e01',
     nombre: 'Cristian Torres',

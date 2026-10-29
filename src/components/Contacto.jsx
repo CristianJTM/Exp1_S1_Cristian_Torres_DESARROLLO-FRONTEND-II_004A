@@ -1,42 +1,11 @@
 import { useState } from 'react'
-
-const FORM_INICIAL = {
-  nombre: '',
-  email: '',
-  telefono: '',
-  asunto: 'Consulta general',
-  mensaje: '',
-}
-
-const OPCIONES_ASUNTO = [
-  'Consulta general',
-  'Pedido y despacho',
-  'Sugerencias',
-  'Trabaja con nosotros',
-]
-
-const INFO_CONTACTO = [
-  {
-    icono: '📍',
-    titulo: 'Visítanos',
-    detalle: 'Calle Falsa 123, Temuco, La Araucanía',
-  },
-  {
-    icono: '📞',
-    titulo: 'Llámanos',
-    detalle: '+56 2 2345 6789',
-  },
-  {
-    icono: '✉️',
-    titulo: 'Escríbenos',
-    detalle: 'hola@superfresco.cl',
-  },
-  {
-    icono: '🕒',
-    titulo: 'Horario',
-    detalle: 'Lunes a domingo · 08:00 a 21:00',
-  },
-]
+import {
+  ASUNTOS,
+  CONTACTO_SECCION,
+  FORM_INICIAL,
+  HERO_CONTACTO,
+  INFO_CONTACTO,
+} from '../data/contacto.js'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const TELEFONO_REGEX = /^\+?[\d\s]{8,15}$/
@@ -104,23 +73,17 @@ export default function Contacto() {
     <>
       <section className="page-hero" aria-labelledby="contacto-title">
         <div className="container">
-          <p className="eyebrow">Hablemos</p>
-          <h1 id="contacto-title">Contáctanos</h1>
-          <p className="page-hero__lead">
-            ¿Tienes una consulta, un pedido especial o una sugerencia? Escríbenos y te responderemos
-            a la brevedad. También puedes visitarnos o llamarnos: nos encanta conversar con nuestros
-            vecinos.
-          </p>
+          <p className="eyebrow">{HERO_CONTACTO.eyebrow}</p>
+          <h1 id="contacto-title">{HERO_CONTACTO.title}</h1>
+          <p className="page-hero__lead">{HERO_CONTACTO.lead}</p>
         </div>
       </section>
 
       <section className="section section--contact">
         <div className="container contact-grid">
           <aside className="contact-info" aria-labelledby="info-title">
-            <h2 id="info-title">Datos de contacto</h2>
-            <p className="contact-info__lead">
-              Estamos en el corazón de Temuco y atendemos todos los días de la semana.
-            </p>
+            <h2 id="info-title">{CONTACTO_SECCION.infoTitle}</h2>
+            <p className="contact-info__lead">{CONTACTO_SECCION.infoLead}</p>
 
             <ul className="contact-list">
               {INFO_CONTACTO.map((item) => (
@@ -136,17 +99,15 @@ export default function Contacto() {
               ))}
             </ul>
 
-            <p className="contact-info__note">
-              Para pedidos con despacho, escríbenos antes de las 15:00 y coordinamos la entrega para
-              el mismo día.
-            </p>
+            <p className="contact-info__note">{CONTACTO_SECCION.infoNote}</p>
           </aside>
 
           <div className="form-card">
-            <h2>Envíanos un mensaje</h2>
+            <h2>{CONTACTO_SECCION.formTitle}</h2>
             <p className="form-card__intro">
-              Completa el formulario y te responderemos dentro de las próximas 24 horas hábiles.
-              Los campos marcados con <span className="required">*</span> son obligatorios.
+              {CONTACTO_SECCION.formIntroBefore}
+              <span className="required">*</span>
+              {CONTACTO_SECCION.formIntroAfter}
             </p>
 
             {enviado && (
@@ -243,7 +204,7 @@ export default function Contacto() {
                     required
                     aria-required="true"
                   >
-                    {OPCIONES_ASUNTO.map((opcion) => (
+                    {ASUNTOS.map((opcion) => (
                       <option key={opcion} value={opcion}>
                         {opcion}
                       </option>
@@ -279,10 +240,7 @@ export default function Contacto() {
                 Enviar mensaje
               </button>
 
-              <p className="form-note">
-                Este formulario es parte de un proyecto académico y no envía datos a ningún
-                servidor.
-              </p>
+              <p className="form-note">{CONTACTO_SECCION.formNote}</p>
             </form>
           </div>
         </div>

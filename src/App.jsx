@@ -5,6 +5,7 @@ import Home from './components/Home.jsx'
 import QuienesSomos from './components/QuienesSomos.jsx'
 import Contacto from './components/Contacto.jsx'
 import NotFound from './components/NotFound.jsx'
+import { FOOTER } from './data/sitio.js'
 
 // En desarrollo BASE_URL es "/"; en GitHub Pages es "/<repositorio>/".
 // React Router necesita el basename sin la barra final.
@@ -27,12 +28,12 @@ export default function App() {
         <footer className="app-footer">
           <div className="container app-footer__inner">
             <p className="app-footer__brand">
-              <span aria-hidden="true">🛒</span> Súper Fresco
+              <span aria-hidden="true">🛒</span> {FOOTER.marca}
             </p>
             <p>
-              Proyecto académico <strong>PFY2202</strong> · Desarrollo Frontend II
+              Proyecto académico <strong>{FOOTER.curso}</strong> · {FOOTER.asignatura}
             </p>
-            <p>Desarrollado por Cristian Torres</p>
+            <p>Desarrollado por {FOOTER.autor}</p>
           </div>
         </footer>
       </div>

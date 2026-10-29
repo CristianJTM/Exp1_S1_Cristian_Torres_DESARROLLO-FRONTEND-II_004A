@@ -1,10 +1,5 @@
 import { NavLink } from 'react-router-dom'
-
-const NAV_ITEMS = [
-  { to: '/', label: 'Inicio', icon: '🏠' },
-  { to: '/quienes-somos', label: 'Quiénes somos', icon: '🏪' },
-  { to: '/contacto', label: 'Contáctanos', icon: '✉️' },
-]
+import { NAV_ITEMS } from '../data/navegacion.js'
 
 export default function Navbar() {
   return (

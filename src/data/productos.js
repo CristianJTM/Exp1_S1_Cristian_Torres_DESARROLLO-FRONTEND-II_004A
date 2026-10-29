@@ -1,4 +1,4 @@
-export const categorias = [
+export const CATEGORIAS = [
   { id: 'frutas', nombre: 'Frutas y verduras', emoji: '🥦' },
   { id: 'lacteos', nombre: 'Lácteos y huevos', emoji: '🥛' },
   { id: 'panaderia', nombre: 'Panadería', emoji: '🥖' },
@@ -7,7 +7,7 @@ export const categorias = [
   { id: 'limpieza', nombre: 'Limpieza y hogar', emoji: '🧴' },
 ]
 
-export const productos = [
+export const PRODUCTOS = [
   {
     id: 'p01',
     nombre: 'Palta Hass',
