@@ -47,8 +47,9 @@ npm run preview
 | `/contacto`       | Contacto        | Datos de contacto ficticios y formulario con validación          |
 | `*`               | NotFound        | Página 404 con enlace de retorno al inicio                       |
 
-Toda la navegación interna usa `Link` y `NavLink` de `react-router-dom`. El menú inferior está
-fuera de `<Routes>`, por lo que permanece visible en todas las vistas.
+Toda la navegación interna usa `Link` y `NavLink` de `react-router-dom`. El menú inferior se
+renderiza dentro de `AppLayout` mediante `<Outlet />`, por lo que permanece visible en todas las
+vistas, incluida la 404.
 
 ## Estructura
 
