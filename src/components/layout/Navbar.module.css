@@ -17,7 +17,7 @@
 
 .navbarInner {
   display: flex;
-  width: min(560px, 100%);
+  width: min(620px, 100%);
 }
 
 .navLink {
@@ -28,11 +28,14 @@
   align-items: center;
   justify-content: center;
   gap: 2px;
+  min-width: 0;
   min-height: 44px;
-  padding: 0 0.35rem;
+  padding: 0 0.2rem;
   color: var(--color-muted);
-  font-size: clamp(0.68rem, 2.8vw, 0.8rem);
+  font-size: clamp(0.62rem, 2.5vw, 0.75rem);
   font-weight: 500;
+  line-height: 1.1;
+  text-align: center;
   text-decoration: none;
   transition:
     color 0.2s ease,
@@ -44,11 +47,14 @@
 }
 
 .navIcon {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1;
 }
 
 .navLabel {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -61,7 +67,7 @@
   content: "";
   position: absolute;
   top: 0;
-  width: 34px;
+  width: 30px;
   height: 3px;
   border-radius: 0 0 3px 3px;
   background-color: currentColor;
