@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import InventarioHeader from '../components/inventario/InventarioHeader.jsx'
 import { ACCIONES, useInventario } from '../context/InventarioContext.jsx'
@@ -21,6 +21,8 @@ function crearId() {
 export default function AgregarArticulo() {
   const [form, setForm] = useState(FORM_INICIAL)
   const [errores, setErrores] = useState({})
+  const nombreRef = useRef(null)
+  const marcaRef = useRef(null)
   const { dispatch } = useInventario()
   const navigate = useNavigate()
 
@@ -52,6 +54,13 @@ export default function AgregarArticulo() {
 
     if (Object.keys(nuevosErrores).length > 0) {
       setErrores(nuevosErrores)
+
+      if (nuevosErrores.nombre) {
+        nombreRef.current?.focus()
+      } else if (nuevosErrores.marca) {
+        marcaRef.current?.focus()
+      }
+
       return
     }
 
@@ -88,18 +97,19 @@ export default function AgregarArticulo() {
               id="nombre"
               name="nombre"
               type="text"
+              ref={nombreRef}
               value={form.nombre}
               onChange={handleChange}
               placeholder="Ej: Leche entera"
               autoComplete="off"
               required
               aria-required="true"
-              aria-invalid={Boolean(errores.nombre)}
+              aria-invalid={errores.nombre ? 'true' : undefined}
               aria-describedby={errores.nombre ? 'error-nombre' : undefined}
               className="mt-1 w-full rounded-xl border border-solid border-sf-border bg-white px-3 py-2.5 text-sm text-sf-text shadow-sm outline-none transition focus:border-sf-green focus:ring-2 focus:ring-sf-green/20"
             />
             {errores.nombre && (
-              <p id="error-nombre" role="alert" className="mt-1 text-xs font-semibold text-sf-error">
+              <p id="error-nombre" role="alert" className="mt-1 mb-0 text-xs font-semibold text-sf-error">
                 {errores.nombre}
               </p>
             )}
@@ -113,18 +123,19 @@ export default function AgregarArticulo() {
               id="marca"
               name="marca"
               type="text"
+              ref={marcaRef}
               value={form.marca}
               onChange={handleChange}
               placeholder="Ej: Colún"
               autoComplete="off"
               required
               aria-required="true"
-              aria-invalid={Boolean(errores.marca)}
+              aria-invalid={errores.marca ? 'true' : undefined}
               aria-describedby={errores.marca ? 'error-marca' : undefined}
               className="mt-1 w-full rounded-xl border border-solid border-sf-border bg-white px-3 py-2.5 text-sm text-sf-text shadow-sm outline-none transition focus:border-sf-green focus:ring-2 focus:ring-sf-green/20"
             />
             {errores.marca && (
-              <p id="error-marca" role="alert" className="mt-1 text-xs font-semibold text-sf-error">
+              <p id="error-marca" role="alert" className="mt-1 mb-0 text-xs font-semibold text-sf-error">
                 {errores.marca}
               </p>
             )}

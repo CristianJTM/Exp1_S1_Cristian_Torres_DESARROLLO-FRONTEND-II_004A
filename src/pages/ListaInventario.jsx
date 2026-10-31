@@ -31,14 +31,14 @@ export default function ListaInventario() {
         </Link>
       </div>
 
-      <p className="mt-6 text-sm font-semibold text-sf-muted">
+      <p className="mt-6 mb-0 text-sm font-semibold text-sf-muted" aria-live="polite">
         {cantidad} {cantidad === 1 ? 'artículo registrado' : 'artículos registrados'}
       </p>
 
       {cantidad === 0 ? (
         <div className="mt-4 rounded-3xl border border-dashed border-sf-border bg-white p-10 text-center">
-          <p className="text-lg font-bold text-sf-text">Aún no hay artículos</p>
-          <p className="mt-2 text-sm text-sf-muted">
+          <p className="mb-0 text-lg font-bold text-sf-text">Aún no hay artículos</p>
+          <p className="mt-2 mb-0 text-sm text-sf-muted">
             Agrega el primer artículo para comenzar a llenar tu inventario.
           </p>
           <Link
