@@ -1,10 +1,8 @@
 # Súper Fresco 🛒
 
-SPA de supermercado desarrollada como actividad formativa de **Desarrollo Frontend II (PFY2202)**.
-
-La aplicación simula el sitio de un supermercado de barrio en Temuco e incluye tres vistas conectadas
-con React Router v6, un menú de navegación inferior persistente y un formulario de contacto con
-validación en el cliente.
+SPA de supermercado desarrollada para **Desarrollo Frontend II (PFY2202)**. La Semana 1 construyó
+la navegación y las páginas institucionales; la Semana 2 agrega gestión global de inventario y
+Tailwind CSS.
 
 ## Sitio publicado
 
@@ -15,7 +13,9 @@ validación en el cliente.
 - React 18.3.1
 - React Router DOM 6.30.6
 - Vite 5
-- CSS Modules sobre CSS plano (sin frameworks)
+- Tailwind CSS 3.4.17 en las páginas nuevas
+- CSS Modules en los componentes de Semana 1
+- Sin backend ni APIs externas
 
 ## Requisitos
 
@@ -40,25 +40,73 @@ npm run preview
 
 ## Rutas
 
-| Ruta              | Vista           | Descripción                                                     |
-| ----------------- | --------------- | --------------------------------------------------------------- |
-| `/`               | Home            | Landing con bienvenida, categorías y productos destacados        |
-| `/quienes-somos`  | QuienesSomos    | Historia, misión, visión, valores y equipo ficticio              |
-| `/contacto`       | Contacto        | Datos de contacto ficticios y formulario con validación          |
-| `*`               | NotFound        | Página 404 con enlace de retorno al inicio                       |
+| Ruta | Vista | Etiqueta del navbar |
+| --- | --- | --- |
+| `/` | Home | Inicio |
+| `/quienes-somos` | QuienesSomos | Nosotros |
+| `/contacto` | Contacto | Contacto |
+| `/inventario/agregar` | AgregarArticulo | Agregar |
+| `/inventario/lista` | ListaInventario | Lista |
+| `*` | NotFound | — |
 
-Toda la navegación interna usa `Link` y `NavLink` de `react-router-dom`. El menú inferior se
-renderiza dentro de `AppLayout` mediante `<Outlet />`, por lo que permanece visible en todas las
-vistas, incluida la 404.
+Toda la navegación interna usa `Link` y `NavLink`. El navbar se renderiza dentro de `AppLayout`
+mediante `<Outlet />`, por lo que permanece visible en todas las vistas.
+
+## Estado global de inventario
+
+`InventarioContext` usa `useReducer` y `useContext`. El Provider envuelve toda la aplicación en
+`App.jsx`.
+
+El estado global es un array de artículos:
+
+```js
+[
+  {
+    id: 'uuid',
+    nombre: 'Leche entera',
+    marca: 'Colún',
+    tipo: 'Lácteos',
+  },
+]
+```
+
+Acciones del reducer:
+
+- `ADD_ARTICULO`: recibe el artículo completo.
+- `DELETE_ARTICULO`: recibe el `id`.
+
+El estado vive en memoria: al recargar la página se reinicia. La persistencia no forma parte de los
+requerimientos de esta actividad.
+
+## Arquitectura
+
+| Capa | Responsabilidad |
+| --- | --- |
+| `src/context/` | Contexto, Provider, hook `useInventario`, reducer y acciones |
+| `src/pages/` | Composición de vistas |
+| `src/components/layout/` | Navbar, Footer, AppLayout y ScrollToTop |
+| `src/components/ui/` | Componentes compartidos de Semana 1 |
+| `src/components/home`, `about`, `contact`, `products` | Secciones de dominio de Semana 1 |
+| `src/components/inventario/` | Cabecera y tabla de inventario |
+| `src/data/` | Contenido estático, navegación y tipos de artículo |
+| `src/hooks/` | Estado del formulario de contacto |
+| `src/utils/` | Validación y formato de moneda |
+| `src/styles/` | Tokens, reset, layout, utilidades globales y entrada de Tailwind |
 
 ## Estructura
 
 ```text
 src/
+├─ context/
+│  ├─ InventarioContext.jsx
+│  └─ inventarioReducer.js
+│
 ├─ pages/
 │  ├─ Home.jsx
 │  ├─ QuienesSomos.jsx
 │  ├─ Contacto.jsx
+│  ├─ AgregarArticulo.jsx
+│  ├─ ListaInventario.jsx
 │  └─ NotFound.jsx
 │
 ├─ components/
@@ -73,24 +121,12 @@ src/
 │  │  ├─ CtaBand.jsx
 │  │  └─ StatList.jsx
 │  ├─ home/
-│  │  ├─ Hero.jsx
-│  │  ├─ CategoryGrid.jsx
-│  │  ├─ FeaturedProducts.jsx
-│  │  └─ BenefitsGrid.jsx
 │  ├─ about/
-│  │  ├─ StorySection.jsx
-│  │  ├─ Timeline.jsx
-│  │  ├─ TimelineItem.jsx
-│  │  ├─ PurposeGrid.jsx
-│  │  ├─ MvCard.jsx
-│  │  ├─ TeamGrid.jsx
-│  │  └─ TeamCard.jsx
 │  ├─ contact/
-│  │  ├─ ContactInfo.jsx
-│  │  ├─ ContactForm.jsx
-│  │  └─ FormField.jsx
-│  └─ products/
-│     └─ ProductCard.jsx
+│  ├─ products/
+│  └─ inventario/
+│     ├─ InventarioHeader.jsx
+│     └─ TablaInventario.jsx
 │
 ├─ data/
 │  ├─ navegacion.js
@@ -99,7 +135,8 @@ src/
 │  ├─ quienesSomos.js
 │  ├─ contacto.js
 │  ├─ productos.js
-│  └─ equipo.js
+│  ├─ equipo.js
+│  └─ inventario.js
 │
 ├─ hooks/
 │  └─ useContactForm.js
@@ -112,42 +149,38 @@ src/
 │  ├─ tokens.css
 │  ├─ base.css
 │  ├─ layout.css
-│  └─ utilities.css
+│  ├─ utilities.css
+│  └─ tailwind.css
 │
 ├─ App.jsx
 └─ main.jsx
 ```
 
-Cada componente o página que necesita estilos propios tiene su archivo `*.module.css` junto al
-`.jsx`.
+## Tailwind CSS
 
-## Arquitectura
+Tailwind v3 se integra con Vite mediante PostCSS:
 
-| Capa | Responsabilidad |
-| --- | --- |
-| `pages/` | Componer las vistas a partir de secciones y componentes |
-| `components/layout/` | Shell persistente: navbar, footer, scroll y `<Outlet />` |
-| `components/ui/` | Componentes compartidos: `PageHero`, `SectionHead`, `CtaBand`, `StatList` |
-| `components/home`, `about`, `contact`, `products` | Secciones y piezas de dominio |
-| `data/` | Contenido estático, textos compartidos y datos del negocio |
-| `hooks/` | Estado y eventos del formulario |
-| `utils/` | Validación y formato de moneda, sin JSX |
-| `styles/` | Tokens, reset, layout y utilidades globales |
-| `*.module.css` | Estilos encapsulados por componente o página |
+- `tailwind.config.js`: `content` apunta a `index.html` y `src/**/*.{js,jsx}`.
+- `postcss.config.js`: plugins `tailwindcss` y `autoprefixer`.
+- `src/styles/tailwind.css`: directivas `@tailwind base`, `@tailwind components` y
+  `@tailwind utilities`.
+- `src/main.jsx` importa Tailwind después de los estilos globales de Semana 1.
 
-La dirección, teléfono, correo, horario, navegación y textos de CTA se centralizan en `data/` para
-evitar duplicaciones. Las páginas no contienen datos del negocio hardcodeados.
+Para proteger la interfaz existente:
+
+- `preflight: false`: Tailwind no reemplaza el reset de `styles/base.css`.
+- `container: false`: evita la colisión con la clase global `.container` de Semana 1.
+- Los CSS Modules de Semana 1 no se modificaron.
+- Las páginas de inventario usan utilidades Tailwind y el tema `sf` definido en la configuración.
 
 ## Despliegue en GitHub Pages
-
-El sitio se publica en la rama `gh-pages` con el paquete `gh-pages`:
 
 ```bash
 npm run deploy
 ```
 
-El script `predeploy` ejecuta el build, `postbuild` genera `dist/404.html` (fallback para
-`BrowserRouter`) y `gh-pages` publica `dist/` con `.nojekyll` en la rama `gh-pages`.
+`predeploy` ejecuta el build, `postbuild` genera `dist/404.html` para el fallback de
+`BrowserRouter` y `gh-pages` publica `dist/` en la rama `gh-pages` con `.nojekyll`.
 
 URL del sitio:
 
@@ -155,21 +188,13 @@ URL del sitio:
 https://cristianjtm.github.io/Exp1_S1_Cristian_Torres_DESARROLLO-FRONTEND-II_004A/
 ```
 
-Para habilitarlo por primera vez en GitHub: **Settings → Pages → Source: Deploy from a branch →
-Branch: `gh-pages` / (root)**. Cada ejecución de `npm run deploy` reemplaza el contenido de la
-rama con el build más reciente.
-
 ## Notas
 
-- No hay backend ni llamadas a APIs: los datos son ficticios y el formulario no envía información
-  a ningún servidor.
-- El proyecto usa `BrowserRouter`. Para GitHub Pages se configuró `base` en Vite, `basename` en
-  React Router y un fallback `404.html`, de modo que las subrutas funcionen al recargar. En otros
-  hostings estáticos puede ser necesario configurar su propio fallback de SPA.
-- El diseño es responsive y reserva espacio para la barra inferior con `padding-bottom` y
-  `env(safe-area-inset-bottom)`.
-- Los estilos usan CSS Modules sobre CSS plano: los tokens, el reset, el layout y las utilidades
-  compartidas permanecen globales; el resto se encapsula por componente.
+- No hay backend ni llamadas a APIs.
+- El formulario de contacto no envía datos a ningún servidor.
+- El navbar inferior tiene cinco ítems con etiquetas cortas y nombres accesibles completos.
+- El estado de inventario se conserva al navegar entre rutas, pero se reinicia al recargar.
+- El proyecto usa `BrowserRouter` con `basename` y fallback `404.html` para GitHub Pages.
 
 ## Autor
 
